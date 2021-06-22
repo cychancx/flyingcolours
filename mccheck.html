@@ -1,0 +1,399 @@
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 20%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 3px;
+
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.checkDiv{
+  float: left;
+}
+.searchDiv{
+  float: left;
+}
+
+</style>
+</head>
+<body onload="genRandQues()">
+  <input class="form-control" type="file" id="input" accept=".xls,.xlsx">
+  <button class="btn btn-primary" id="button">Convert</button>
+  <pre id="jsondata"></pre>
+  <div class="checkDiv">
+    <h2><input type="text" id="mcYear" name="mcYear" size="3" maxlength="4"> MC Answer box</h2>
+      <table>
+        <tr>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="mcans1" name="mcans1" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans2" name="mcans2" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans3" name="mcans3" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans4" name="mcans4" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans5" name="mcans5" size="3" maxlength="1"></td>
+        </tr>
+        <tr>
+          <th>6</th>
+          <th>7</th>
+          <th>8</th>
+          <th>9</th>
+          <th>10</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="mcans6" name="mcans6" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans7" name="mcans7" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans8" name="mcans8" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans9" name="mcans9" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans10" name="mcans10" size="3" maxlength="1"></td>
+        </tr>
+        <tr>
+          <th>11</th>
+          <th>12</th>
+          <th>13</th>
+          <th>14</th>
+          <th>15</th>
+        </tr>
+        <tr>
+            <td><input type="text" id="mcans11" name="mcans11" size="3" maxlength="1"></td>
+            <td><input type="text" id="mcans12" name="mcans12" size="3" maxlength="1"></td>
+            <td><input type="text" id="mcans13" name="mcans13" size="3" maxlength="1"></td>
+            <td><input type="text" id="mcans14" name="mcans14" size="3" maxlength="1"></td>
+            <td><input type="text" id="mcans15" name="mcans15" size="3" maxlength="1"></td>
+        </tr>
+        <tr>
+          <th>16</th>
+          <th>17</th>
+          <th>18</th>
+          <th>19</th>
+          <th>20</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="mcans16" name="mcans16" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans17" name="mcans17" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans18" name="mcans18" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans19" name="mcans19" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans20" name="mcans20" size="3" maxlength="1"></td>
+        </tr>
+        <tr>
+          <th>21</th>
+          <th>22</th>
+          <th>23</th>
+          <th>24</th>
+          <th>25</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="mcans21" name="mcans21" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans22" name="mcans22" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans23" name="mcans23" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans24" name="mcans24" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans25" name="mcans25" size="3" maxlength="1"></td>
+        </tr>
+        <tr>
+          <th>26</th>
+          <th>27</th>
+          <th>28</th>
+          <th>29</th>
+          <th>30</th>
+        </tr>
+        <tr>
+            <td><input type="text" id="mcans26" name="mcans26" size="3" maxlength="1"></td>
+            <td><input type="text" id="mcans27" name="mcans27" size="3" maxlength="1"></td>
+            <td><input type="text" id="mcans28" name="mcans28" size="3" maxlength="1"></td>
+            <td><input type="text" id="mcans29" name="mcans29" size="3" maxlength="1"></td>
+            <td><input type="text" id="mcans30" name="mcans30" size="3" maxlength="1"></td>
+          </tr>
+        <tr>
+          <th>31</th>
+          <th>32</th>
+          <th>33</th>
+          <th>34</th>
+          <th>35</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="mcans31" name="mcans31" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans32" name="mcans32" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans33" name="mcans33" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans34" name="mcans34" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans35" name="mcans35" size="3" maxlength="1"></td>
+        </tr>
+        <tr>
+          <th>36</th>
+          <th>37</th>
+          <th>38</th>
+          <th>39</th>
+          <th>40</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="mcans36" name="mcans36" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans37" name="mcans37" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans38" name="mcans38" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans39" name="mcans39" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans40" name="mcans40" size="3" maxlength="1"></td>
+        </tr>
+        <tr>
+          <th>41</th>
+          <th>42</th>
+          <th>43</th>
+          <th>44</th>
+          <th>45</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="mcans41" name="mcans41" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans42" name="mcans42" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans43" name="mcans43" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans44" name="mcans44" size="3" maxlength="1"></td>
+          <td><input type="text" id="mcans45" name="mcans45" size="3" maxlength="1"></td>
+        </tr>
+      </table>
+    <button type="button" onclick="ansChecking()">Check</button>
+    <p id="result"></p>
+  </div>
+
+  <div class="searchDiv">
+    <h2>MC Answer Searching</h2>
+    <input type="text" id="searchbox" name="searchbox" maxlength="4" oninput="ansSearching()">
+    <p id="noted">Plz input 4 DIGITAL NUMBERS. <br>
+      e.g. 1701<br>
+       means Question 1 in 2017 HKDSE math paper 2</p>
+  </div>
+
+  <div class="genDiv">
+    <h2>Question Generator</h2>
+    <p id="genQues1"></p>
+    <button type="button" onclick="genRandQues()">Generate</button>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+<script>
+window['ans2017']= ["A","D","A","D","D","A","B","A","C","C","B","C","B","B","C","D","D","A","D","D","C","D","A","A","C","A","B","C","B","B","D","D","C","D","B","C","C","A","A","B","D","B","C","B","A"];
+window['percentage2017']= ["89","72","73","90","87","73","76","62","44","76","56","84","86","71","53","32","36","45","68","15","59","58","30","59","57","53","39","84","76","51","42","50","53","41","45","66","45","49","34","62","21","71","59","78","48"];
+
+
+let selectedFile;
+let rowObject;
+console.log(window.XLSX);
+document.getElementById('input').addEventListener("change",(event) => {
+  selectedFile = event.target.files[0];
+  console.log(selectedFile);
+})
+
+document.getElementById('button').addEventListener("click",() => {
+  if(selectedFile){
+    let fileReader = new FileReader();
+    fileReader.readAsBinaryString(selectedFile);
+    fileReader.onload = (event) =>{
+      let data = event.target.result;
+      let workbook = XLSX.read(data,{type:"binary"});
+      console.log(workbook);
+      workbook.SheetNames.forEach(sheet => {
+       rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
+        console.log(rowObject);
+        //document.getElementById("jsondata").innerHTML = JSON.stringify(rowObject,undefined,4)
+      });
+      }
+
+
+  }
+});
+
+function ansChecking() {
+  var correct = 0;
+  var yearIndex = null;
+  if((document.getElementById("mcYear").value <= 2020 && document.getElementById("mcYear").value >= 1977) || document.getElementById("mcYear").value == "SP" || document.getElementById("mcYear").value == "PP"){
+    console.log(document.getElementById("mcYear").value);
+    for(var i = 0;i < 46;i++){
+      console.log(rowObject[i].year);
+        if(JSON.stringify(rowObject[i].year).localeCompare(document.getElementById("mcYear").value)){
+          yearIndex = i;
+          alert("Can find this year MC answer!");
+          break;
+        }
+    }
+    if(yearIndex == null){
+      alert("Cant find this year MC answer!");
+    }else{
+      for(var i = 1;i <= 45;i++){
+        if(true){
+          document.getElementById("mcans" + i.toString()).value = ans2017[i-1] + " (" + percentage2017[i-1] + "%)";
+          correct++;
+        }else {
+          document.getElementById("mcans" + i.toString()).style.color = "red";
+          document.getElementById("mcans" + i.toString()).value = ans2017[i-1] + " (" + percentage2017[i-1] + "%)";
+        }
+      }
+    }
+    document.getElementById("result").innerHTML = "You got "+correct+" correct!";
+  }else {
+    alert("Plz input correct year!");
+  }
+}
+
+function ansSearching(){
+  var input = document.getElementById("searchbox").value;
+  var yr = input.substr(0,2);
+  var qnum =input.substr(2,4);
+  //document.getElementById("noted").innerHTML = "You wrote: " + input;
+    if(input.length < 4){
+      document.getElementById("noted").innerHTML = "Plz input 4 DIGITAL NUMBERS.<br>\ne.g. 1701 <br>\nmeans Question 1 in 2017 HKDSE math paper 2";
+      document.getElementById("noted").style.color = "black";
+    }else{
+      if(qnum >= "01" && qnum <= "45"){
+        document.getElementById("noted").innerHTML = window['ans20'+yr][(qnum-1)];
+        document.getElementById("noted").innerHTML += " ("+ window['percentage20'+yr][(qnum-1)] + "%)";
+        document.getElementById("noted").style.color = "red";
+
+      }
+    }
+  /*
+  var input = document.getElementById("searchbox").value;
+  var yr = input.substr(0,2);
+  var qnum =input.substr(2,4);
+
+  if(input.match(/^\s*$/)){
+    //alert("The inputs are null!");
+  }else {
+    if(isNaN(input))
+      //alert("Plz input 4 digital numbers");
+    else if(yr == "17"){
+            if(qnum >= "01" && qnum <= "45"){
+                //alert("Here is the answer!");
+                document.getElementById("noted").innerHTML = ans2017[qnum-1];
+                document.getElementById("noted").style.color = "red";
+              }else{
+                  //alert("Plz input the correct question number!");
+              }
+      }else{
+          //alert("Plz input the correct year!");
+      }
+
+  }
+  */
+}
+function randNegative(ref){ //helper function of genRandQues()
+  if(Math.floor(Math.random()*2)){
+    ref.vl *= -1;
+  }
+  return ref.vl;
+}
+function NegativeFraction(num,deno){//helper function of genRandQues()
+  var temp;
+  if(num>0){
+    if(deno > 0)
+      temp = "-"+num+"/"+deno;
+    else
+     temp = num+"/"+deno;
+  }else{
+    temp = +num*-1+"/"+deno;
+  }
+  return temp;
+}
+
+
+function genRandQues(){
+  var a= {vl : Math.floor(Math.random() * 10)+1};
+  randNegative(a);
+  var b= {vl : Math.floor(Math.random() * 10)+1};
+  randNegative(b);
+  var c= {vl : Math.floor(Math.random() * 10)+1};
+  randNegative(c);
+
+  var wans = [];
+  for(var i =0;i < 6;i++){
+    var an = a.vl*-1;
+    var bn = b.vl*-1;
+    var cn = c.vl*-1;
+    var pool =[a.vl,b.vl,c.vl,an,bn,cn];
+    for(var j=0;j < 6;j++){
+      wans.push(pool[i]+"/"+pool[j]);
+    }
+  }
+
+  var slope = NegativeFraction(a.vl,b.vl);
+  var xint = NegativeFraction(c.vl,a.vl);
+  var yint = NegativeFraction(c.vl,b.vl);
+  if (a.vl == 1){
+    document.getElementById("genQues1").innerHTML = "x ";
+  }else if(a.vl == -1){
+    document.getElementById("genQues1").innerHTML = "-x ";
+  }else {
+    document.getElementById("genQues1").innerHTML = a.vl + "x ";
+  }
+  if (b.vl == 1){
+    document.getElementById("genQues1").innerHTML += "+ y ";
+  }else if(b.vl == -1){
+    document.getElementById("genQues1").innerHTML += "- y ";
+  }else if(b.vl > 0){
+    document.getElementById("genQues1").innerHTML += "+ "+ b.vl + "y ";
+  }else if(b.vl < 0){
+    document.getElementById("genQues1").innerHTML += "- "+ b.vl*-1 + "y ";
+  }
+  if (c.vl > 0){
+    document.getElementById("genQues1").innerHTML += "+ "+ c.vl+" = 0";
+  }else if(c.vl < 0){
+    document.getElementById("genQues1").innerHTML += "- " + c.vl*-1+" = 0";
+  }
+
+  document.getElementById("genQues1").innerHTML += "<br>Which is the slope?<br>";
+  var correctAnsPostion = Math.floor(Math.random() * 3);
+  for(var i = 0;i<3;i++){
+    var randIndex =Math.floor(Math.random() * 36);
+    if(i == correctAnsPostion){
+      document.getElementById("genQues1").innerHTML += slope;
+    }else if(wans[randIndex] != slope){
+     document.getElementById("genQues1").innerHTML += " "+ wans[randIndex]+" " ;
+    }else{
+      i--;
+    }
+  }
+  document.getElementById("genQues1").innerHTML += "<br>slope =  "+ slope;
+
+  document.getElementById("genQues1").innerHTML += "<br>Which is the x int?<br>";
+  correctAnsPostion = Math.floor(Math.random() * 3);
+  for(var i = 0;i<3;i++){
+    var randIndex =Math.floor(Math.random() * 36);
+    if(i == correctAnsPostion){
+      document.getElementById("genQues1").innerHTML += xint;
+    }else if(wans[randIndex] != xint){
+     document.getElementById("genQues1").innerHTML += " "+ wans[randIndex]+" " ;
+    }else{
+      i--;
+    }
+  }
+  document.getElementById("genQues1").innerHTML += "<br>x int =  "+ xint;
+
+  document.getElementById("genQues1").innerHTML += "<br>Which is the y int?<br>";
+  correctAnsPostion = Math.floor(Math.random() * 3);
+  for(var i = 0;i<3;i++){
+    var randIndex =Math.floor(Math.random() * 36);
+    if(i == correctAnsPostion){
+      document.getElementById("genQues1").innerHTML += yint;
+    }else if(wans[randIndex] != yint){
+     document.getElementById("genQues1").innerHTML += " "+ wans[randIndex]+" " ;
+   }else{
+     i--;
+   }
+  }
+  document.getElementById("genQues1").innerHTML += "<br>y int =  "+ yint;
+  //document.getElementById("genQues1").innerHTML = "test: " + JSON.stringify(rowObject[0]);
+}
+
+</script>
+</body>
+</html>
