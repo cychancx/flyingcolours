@@ -1,187 +1,227 @@
 <html>
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 20%;
-}
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 3px;
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
 
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
-.checkDiv{
-  float: left;
-}
-.searchDiv{
-  float: left;
-}
 
 </style>
 </head>
 <body onload="genRandQues()">
-  <input class="form-control" type="file" id="input" accept=".xls,.xlsx">
-  <button class="btn btn-primary" id="button">Convert</button>
-  <pre id="jsondata"></pre>
-  <div class="checkDiv">
-    <h2><input type="text" id="mcYear" name="mcYear" size="3" maxlength="4"> MC Answer box</h2>
-      <table>
-        <tr>
-          <th>1</th>
-          <th>2</th>
-          <th>3</th>
-          <th>4</th>
-          <th>5</th>
-        </tr>
-        <tr>
-          <td><input type="text" id="mcans1" name="mcans1" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans2" name="mcans2" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans3" name="mcans3" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans4" name="mcans4" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans5" name="mcans5" size="3" maxlength="1"></td>
-        </tr>
-        <tr>
-          <th>6</th>
-          <th>7</th>
-          <th>8</th>
-          <th>9</th>
-          <th>10</th>
-        </tr>
-        <tr>
-          <td><input type="text" id="mcans6" name="mcans6" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans7" name="mcans7" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans8" name="mcans8" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans9" name="mcans9" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans10" name="mcans10" size="3" maxlength="1"></td>
-        </tr>
-        <tr>
-          <th>11</th>
-          <th>12</th>
-          <th>13</th>
-          <th>14</th>
-          <th>15</th>
-        </tr>
-        <tr>
-            <td><input type="text" id="mcans11" name="mcans11" size="3" maxlength="1"></td>
-            <td><input type="text" id="mcans12" name="mcans12" size="3" maxlength="1"></td>
-            <td><input type="text" id="mcans13" name="mcans13" size="3" maxlength="1"></td>
-            <td><input type="text" id="mcans14" name="mcans14" size="3" maxlength="1"></td>
-            <td><input type="text" id="mcans15" name="mcans15" size="3" maxlength="1"></td>
-        </tr>
-        <tr>
-          <th>16</th>
-          <th>17</th>
-          <th>18</th>
-          <th>19</th>
-          <th>20</th>
-        </tr>
-        <tr>
-          <td><input type="text" id="mcans16" name="mcans16" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans17" name="mcans17" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans18" name="mcans18" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans19" name="mcans19" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans20" name="mcans20" size="3" maxlength="1"></td>
-        </tr>
-        <tr>
-          <th>21</th>
-          <th>22</th>
-          <th>23</th>
-          <th>24</th>
-          <th>25</th>
-        </tr>
-        <tr>
-          <td><input type="text" id="mcans21" name="mcans21" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans22" name="mcans22" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans23" name="mcans23" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans24" name="mcans24" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans25" name="mcans25" size="3" maxlength="1"></td>
-        </tr>
-        <tr>
-          <th>26</th>
-          <th>27</th>
-          <th>28</th>
-          <th>29</th>
-          <th>30</th>
-        </tr>
-        <tr>
-            <td><input type="text" id="mcans26" name="mcans26" size="3" maxlength="1"></td>
-            <td><input type="text" id="mcans27" name="mcans27" size="3" maxlength="1"></td>
-            <td><input type="text" id="mcans28" name="mcans28" size="3" maxlength="1"></td>
-            <td><input type="text" id="mcans29" name="mcans29" size="3" maxlength="1"></td>
-            <td><input type="text" id="mcans30" name="mcans30" size="3" maxlength="1"></td>
-          </tr>
-        <tr>
-          <th>31</th>
-          <th>32</th>
-          <th>33</th>
-          <th>34</th>
-          <th>35</th>
-        </tr>
-        <tr>
-          <td><input type="text" id="mcans31" name="mcans31" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans32" name="mcans32" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans33" name="mcans33" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans34" name="mcans34" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans35" name="mcans35" size="3" maxlength="1"></td>
-        </tr>
-        <tr>
-          <th>36</th>
-          <th>37</th>
-          <th>38</th>
-          <th>39</th>
-          <th>40</th>
-        </tr>
-        <tr>
-          <td><input type="text" id="mcans36" name="mcans36" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans37" name="mcans37" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans38" name="mcans38" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans39" name="mcans39" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans40" name="mcans40" size="3" maxlength="1"></td>
-        </tr>
-        <tr>
-          <th>41</th>
-          <th>42</th>
-          <th>43</th>
-          <th>44</th>
-          <th>45</th>
-        </tr>
-        <tr>
-          <td><input type="text" id="mcans41" name="mcans41" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans42" name="mcans42" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans43" name="mcans43" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans44" name="mcans44" size="3" maxlength="1"></td>
-          <td><input type="text" id="mcans45" name="mcans45" size="3" maxlength="1"></td>
-        </tr>
-      </table>
-    <button type="button" onclick="ansChecking()">Check</button>
-    <p id="result"></p>
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+    <div class="w3-container">
+      <h3 class="w3-padding-64"><b>FLYING<br>COLOURS</b></h3>
+    </div>
+    <div class="w3-bar-block">
+      <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
+
+      <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">MC Answer box</a>
+      <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">MC Answer Searching</a>
+      <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Question Generator</a>
+    </div>
+  </nav>
+
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>FLYING COLOURS</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="showcase">
+    <h1 class="w3-jumbo"><b>VICTOR CHUNG MATHS</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  <div class="searchDiv">
-    <h2>MC Answer Searching</h2>
-    <input type="text" id="searchbox" name="searchbox" maxlength="4" oninput="ansSearching()">
-    <p id="noted">Plz input 4 DIGITAL NUMBERS. <br>
-      e.g. 1701<br>
-       means Question 1 in 2017 HKDSE math paper 2</p>
-  </div>
+  <!-- function1 -->
+    <div class="w3-container" id="services" style="margin-top:75px">
+      <h1 class="w3-xxxlarge w3-text-red"><b>MC Answer box</b></h1>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+      <input class="form-control" type="file" id="input" accept=".xls,.xlsx">
+      <button class="btn btn-primary" id="button">Convert</button>
+      <pre id="jsondata"></pre>
+      <div class="checkDiv">
+        <h2><input type="text" id="mcYear" name="mcYear" size="3" maxlength="4"> MC Answer box</h2>
+          <table>
+            <tr>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+            </tr>
+            <tr>
+              <td><input type="text" id="mcans1" name="mcans1" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans2" name="mcans2" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans3" name="mcans3" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans4" name="mcans4" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans5" name="mcans5" size="3" maxlength="1"></td>
+            </tr>
+            <tr>
+              <th>6</th>
+              <th>7</th>
+              <th>8</th>
+              <th>9</th>
+              <th>10</th>
+            </tr>
+            <tr>
+              <td><input type="text" id="mcans6" name="mcans6" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans7" name="mcans7" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans8" name="mcans8" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans9" name="mcans9" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans10" name="mcans10" size="3" maxlength="1"></td>
+            </tr>
+            <tr>
+              <th>11</th>
+              <th>12</th>
+              <th>13</th>
+              <th>14</th>
+              <th>15</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="mcans11" name="mcans11" size="3" maxlength="1"></td>
+                <td><input type="text" id="mcans12" name="mcans12" size="3" maxlength="1"></td>
+                <td><input type="text" id="mcans13" name="mcans13" size="3" maxlength="1"></td>
+                <td><input type="text" id="mcans14" name="mcans14" size="3" maxlength="1"></td>
+                <td><input type="text" id="mcans15" name="mcans15" size="3" maxlength="1"></td>
+            </tr>
+            <tr>
+              <th>16</th>
+              <th>17</th>
+              <th>18</th>
+              <th>19</th>
+              <th>20</th>
+            </tr>
+            <tr>
+              <td><input type="text" id="mcans16" name="mcans16" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans17" name="mcans17" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans18" name="mcans18" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans19" name="mcans19" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans20" name="mcans20" size="3" maxlength="1"></td>
+            </tr>
+            <tr>
+              <th>21</th>
+              <th>22</th>
+              <th>23</th>
+              <th>24</th>
+              <th>25</th>
+            </tr>
+            <tr>
+              <td><input type="text" id="mcans21" name="mcans21" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans22" name="mcans22" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans23" name="mcans23" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans24" name="mcans24" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans25" name="mcans25" size="3" maxlength="1"></td>
+            </tr>
+            <tr>
+              <th>26</th>
+              <th>27</th>
+              <th>28</th>
+              <th>29</th>
+              <th>30</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="mcans26" name="mcans26" size="3" maxlength="1"></td>
+                <td><input type="text" id="mcans27" name="mcans27" size="3" maxlength="1"></td>
+                <td><input type="text" id="mcans28" name="mcans28" size="3" maxlength="1"></td>
+                <td><input type="text" id="mcans29" name="mcans29" size="3" maxlength="1"></td>
+                <td><input type="text" id="mcans30" name="mcans30" size="3" maxlength="1"></td>
+              </tr>
+            <tr>
+              <th>31</th>
+              <th>32</th>
+              <th>33</th>
+              <th>34</th>
+              <th>35</th>
+            </tr>
+            <tr>
+              <td><input type="text" id="mcans31" name="mcans31" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans32" name="mcans32" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans33" name="mcans33" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans34" name="mcans34" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans35" name="mcans35" size="3" maxlength="1"></td>
+            </tr>
+            <tr>
+              <th>36</th>
+              <th>37</th>
+              <th>38</th>
+              <th>39</th>
+              <th>40</th>
+            </tr>
+            <tr>
+              <td><input type="text" id="mcans36" name="mcans36" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans37" name="mcans37" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans38" name="mcans38" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans39" name="mcans39" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans40" name="mcans40" size="3" maxlength="1"></td>
+            </tr>
+            <tr>
+              <th>41</th>
+              <th>42</th>
+              <th>43</th>
+              <th>44</th>
+              <th>45</th>
+            </tr>
+            <tr>
+              <td><input type="text" id="mcans41" name="mcans41" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans42" name="mcans42" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans43" name="mcans43" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans44" name="mcans44" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans45" name="mcans45" size="3" maxlength="1"></td>
+            </tr>
+          </table>
+        <button type="button" onclick="ansChecking()">Check</button>
+        <p id="result"></p>
+      </div>
+    </div>
 
-  <div class="genDiv">
-    <h2>Question Generator</h2>
-    <p id="genQues1"></p>
-    <button type="button" onclick="genRandQues()">Generate</button>
-  </div>
+    <!--function2 -->
+    <div class="w3-container" id="designers" style="margin-top:75px">
+      <h1 class="w3-xxxlarge w3-text-red"><b>MC Answer Searching</b></h1>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+      <div class="searchDiv">
+        <input type="text" id="searchbox" name="searchbox" maxlength="4" oninput="ansSearching()">
+        <p id="noted">Plz input 4 DIGITAL NUMBERS. <br>
+          e.g. 1701<br>
+           means Question 1 in 2017 HKDSE math paper 2</p>
+      </div>
+    </div>
+
+    <!-- function3 -->
+     <div class="w3-container" id="contact" style="margin-top:75px">
+       <h1 class="w3-xxxlarge w3-text-red"><b>Question Generator</b></h1>
+       <hr style="width:50px;border:5px solid red" class="w3-round">
+
+         <div class="genDiv">
+           <p id="genQues1"></p>
+           <button type="button" onclick="genRandQues()">Generate</button>
+         </div>
+     </div>
+     <!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right"</p></div>
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
-<script>
+<script >
 window['ans2017']= ["A","D","A","D","D","A","B","A","C","C","B","C","B","B","C","D","D","A","D","D","C","D","A","A","C","A","B","C","B","B","D","D","C","D","B","C","C","A","A","B","D","B","C","B","A"];
 window['percentage2017']= ["89","72","73","90","87","73","76","62","44","76","56","84","86","71","53","32","36","45","68","15","59","58","30","59","57","53","39","84","76","51","42","50","53","41","45","66","45","49","34","62","21","71","59","78","48"];
 
@@ -261,30 +301,7 @@ function ansSearching(){
 
       }
     }
-  /*
-  var input = document.getElementById("searchbox").value;
-  var yr = input.substr(0,2);
-  var qnum =input.substr(2,4);
 
-  if(input.match(/^\s*$/)){
-    //alert("The inputs are null!");
-  }else {
-    if(isNaN(input))
-      //alert("Plz input 4 digital numbers");
-    else if(yr == "17"){
-            if(qnum >= "01" && qnum <= "45"){
-                //alert("Here is the answer!");
-                document.getElementById("noted").innerHTML = ans2017[qnum-1];
-                document.getElementById("noted").style.color = "red";
-              }else{
-                  //alert("Plz input the correct question number!");
-              }
-      }else{
-          //alert("Plz input the correct year!");
-      }
-
-  }
-  */
 }
 function randNegative(ref){ //helper function of genRandQues()
   if(Math.floor(Math.random()*2)){
@@ -393,6 +410,17 @@ function genRandQues(){
   document.getElementById("genQues1").innerHTML += "<br>y int =  "+ yint;
   //document.getElementById("genQues1").innerHTML = "test: " + JSON.stringify(rowObject[0]);
 }
+// Script to open and close sidebar
+function w3_open() {
+document.getElementById("mySidebar").style.display = "block";
+document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+document.getElementById("mySidebar").style.display = "none";
+document.getElementById("myOverlay").style.display = "none";
+}
+
 
 </script>
 </body>
