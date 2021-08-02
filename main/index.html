@@ -12,6 +12,7 @@ body {font-size:16px;}
 
 </style>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <body onload="genRandQues()">
   <!-- Sidebar/menu -->
   <nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -22,9 +23,9 @@ body {font-size:16px;}
     <div class="w3-bar-block">
       <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
 
-      <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">MC Answer box</a>
-      <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">MC Answer Searching</a>
-      <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Question Generator</a>
+      <a href="#func1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">MC Answer box</a>
+      <a href="#func2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">MC Answer Searching</a>
+      <a href="#func3" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Question Generator</a>
     </div>
   </nav>
 
@@ -42,19 +43,19 @@ body {font-size:16px;}
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
   <!-- Header -->
-  <div class="w3-container" style="margin-top:80px" id="showcase">
+  <div class="fade" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>VICTOR CHUNG MATHS</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
   <!-- function1 -->
-    <div class="w3-container" id="services" style="margin-top:75px">
+    <div class="fade" id="func1" style="margin-top:75px">
       <h1 class="w3-xxxlarge w3-text-red"><b>MC Answer box</b></h1>
       <hr style="width:50px;border:5px solid red" class="w3-round">
       <input class="form-control" type="file" id="input" accept=".xls,.xlsx">
       <button class="btn btn-primary" id="button">Convert</button>
       <pre id="jsondata"></pre>
-      <div class="checkDiv">
+      <div id="checkDiv">
         <h2><input type="text" id="mcYear" name="mcYear" size="3" maxlength="4"> MC Answer box</h2>
           <table>
             <tr>
@@ -190,7 +191,7 @@ body {font-size:16px;}
     </div>
 
     <!--function2 -->
-    <div class="w3-container" id="designers" style="margin-top:75px">
+    <div class="fade" id="func2" style="margin-top:75px">
       <h1 class="w3-xxxlarge w3-text-red"><b>MC Answer Searching</b></h1>
       <hr style="width:50px;border:5px solid red" class="w3-round">
       <div class="searchDiv">
@@ -202,7 +203,7 @@ body {font-size:16px;}
     </div>
 
     <!-- function3 -->
-     <div class="w3-container" id="contact" style="margin-top:75px">
+     <div class="fade" id="func3" style="margin-top:75px">
        <h1 class="w3-xxxlarge w3-text-red"><b>Question Generator</b></h1>
        <hr style="width:50px;border:5px solid red" class="w3-round">
 
@@ -421,6 +422,22 @@ document.getElementById("mySidebar").style.display = "none";
 document.getElementById("myOverlay").style.display = "none";
 }
 
+$(window).on("load",function() {
+  $(window).scroll(function() {
+    var windowBottom = $(this).scrollTop() + $(this).innerHeight();
+    $(".fade").each(function() {
+      /* Check the location of each desired element */
+      var objectBottom = $(this).offset().top + $(this).outerHeight();
+
+      /* If the element is completely within bounds of the window, fade it in */
+      if (objectBottom < windowBottom) { //object comes into view (scrolling down)
+        if ($(this).css("opacity")==0) {$(this).fadeTo(500,1);}
+      } else { //object goes out of view (scrolling up)
+        if ($(this).css("opacity")==1) {$(this).fadeTo(500,0);}
+      }
+    });
+  }).scroll(); //invoke scroll-handler on page-load
+});
 
 </script>
 </body>
