@@ -105,7 +105,7 @@ body {font-size:16px;}
       <input class="form-control" type="file" id="input" accept=".xls,.xlsx">
       <button class="btn btn-primary" id="button">Convert</button>
       <pre id="jsondata"></pre>
-      <div class="checkDiv">
+      <div class="checkDiv" onclick = "make_black()">
         <h2><input type="text" id="mcYear" name="mcYear" size="3" maxlength="4"> MC Answer box</h2>
           <table>
             <tr>
@@ -307,7 +307,7 @@ function ansChecking() {
   var correct = 0;
   var yr = document.getElementById("mcYear").value;
   var qnum = null;
-  if((yr <= 2020 && yr >= 1977) || yr.toUpperCase() == "SP" || yr.toUpperCase() == "PP"){ 
+  if((yr <= 2020 && yr >= 1977) || yr.toUpperCase() == "SP" || yr.toUpperCase() == "PP"){
     yr = yr.slice(-2);
     for(var i = 1;i <= 45;i++){
       if(i < 10)
@@ -462,7 +462,10 @@ function w3_close() {
 document.getElementById("mySidebar").style.display = "none";
 document.getElementById("myOverlay").style.display = "none";
 }
-
+function make_black()
+{
+document.getElementsByClassName("checkDiv").style.color ="black";
+}
 
 </script>
 </body>
