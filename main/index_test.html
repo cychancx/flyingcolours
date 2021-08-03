@@ -16,30 +16,37 @@
           var result           = '';
           var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
           var charactersLength = characters.length;
-        for ( var i = 0; i < length; i++ ) {
-          result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
+          for ( var i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          }
+          return result;
         }
 
-        function jsonKeyCleanUp(persons){
+        function jsonKeyRand(persons){
           for (var key in Object.keys(persons.data)){
-            var tempkey = makeid(20);
+            var tempkey = makeid(40);
 
             persons.data[tempkey] = persons.data[key];
             delete persons.data[key];
-
-            newname = persons.data[tempkey]["year"].slice(-2) + ("0"+persons.data[tempkey]["question"]).slice(-2);
-
-            persons.data[newname] = persons.data[tempkey];
-            delete persons.data[tempkey];
-            //console.log(newname);
-
           }
           return persons;
         }
-        globalPersons = jsonKeyCleanUp(persons);
-        console.log(globalPersons)
+
+        function jsonKeyRename(jsonobject){
+          var testlist = Object.keys(jsonobject.data);
+          for (i = 0; i< testlist.length; i++){
+            console.log(testlist[i]);
+
+            var newname = jsonobject.data[testlist[i]]["year"].slice(-2) + ("0"+jsonobject.data[testlist[i]]["question"]).slice(-2);
+
+            jsonobject.data[newname] = jsonobject.data[testlist[i]];
+            delete jsonobject.data[testlist[i]];
+          }
+          return jsonobject;
+        }
+
+        globalPersons = jsonKeyRename(jsonKeyRand(persons));
+        console.log(globalPersons);
       }
     }
     xmlhttp.send();
@@ -239,9 +246,8 @@ body {font-size:16px;}
       <hr style="width:50px;border:5px solid red" class="w3-round">
       <div class="searchDiv">
         <input type="text" id="searchbox" name="searchbox" maxlength="4" oninput="ansSearching()">
-        <p id="noted">Plz input 4 DIGITAL NUMBERS. <br>
-          e.g. 1701<br>
-           means Question 1 in 2017 HKDSE math paper 2</p>
+        <p id="noted">Please input a 4 digit number. <br>
+          e.g. 1701 indicates MC question 1 in 2017 HKDSE Maths paper 2</p>
       </div>
     </div>
 
@@ -299,34 +305,27 @@ document.getElementById('button').addEventListener("click",() => {
 
 function ansChecking() {
   var correct = 0;
-  var yearIndex = null;
-  if((document.getElementById("mcYear").value <= 2020 && document.getElementById("mcYear").value >= 1977) || document.getElementById("mcYear").value == "SP" || document.getElementById("mcYear").value == "PP"){
-    console.log(document.getElementById("mcYear").value);
-    for(var i = 0;i < 46;i++){
-      console.log(rowObject[i].year);
-        if(JSON.stringify(rowObject[i].year).localeCompare(document.getElementById("mcYear").value)){
-          yearIndex = i;
-          alert("Can find this year MC answer!");
-          break;
-        }
-    }
-    if(yearIndex == null){
-      alert("Cant find this year MC answer!");
-    }else{
-      for(var i = 1;i <= 45;i++){
-        if(true){
-          document.getElementById("mcans" + i.toString()).value = globalPersons.data[yr+qnum].answer;
-          correct++;
-        }else {
-          document.getElementById("mcans" + i.toString()).style.color = "red";
-          document.getElementById("mcans" + i.toString()).value = ans2017[i-1] + " (" + percentage2017[i-1] + "%)";
-        }
+  var yr = document.getElementById("mcYear").value;
+  var qnum = null;
+  if((yr <= 2020 && yr >= 1977) || yr.toUpperCase() == "SP" || yr.toUpperCase() == "PP"){ 
+    yr = yr.slice(-2);
+    for(var i = 1;i <= 45;i++){
+      if(i < 10)
+        qnum = "0"+i.toString();
+       else {
+         qnum = i.toString();
+       }
+      if(document.getElementById("mcans" + i.toString()).value.toUpperCase() == globalPersons.data[yr.toUpperCase()+qnum].answer){
+        correct++;
+        document.getElementById("mcans" + i.toString()).style.color = "lime";
+      }else {
+        document.getElementById("mcans" + i.toString()).style.color = "red";
+        document.getElementById("mcans" + i.toString()).value = globalPersons.data[yr.toUpperCase()+qnum].answer;
       }
     }
-    document.getElementById("result").innerHTML = "You got "+correct+" correct!";
-  }else {
-    alert("Plz input correct year!");
   }
+  else{alert("Year not found.");}
+  document.getElementById("result").innerHTML = "You got "+correct+" correct!";
 }
 
 function ansSearching(){
@@ -335,12 +334,12 @@ function ansSearching(){
   var qnum =input.substr(2,4);
   //document.getElementById("noted").innerHTML = "You wrote: " + input;
     if(input.length < 4){
-      document.getElementById("noted").innerHTML = "Plz input 4 DIGITAL NUMBERS.<br>\ne.g. 1701 <br>\nmeans Question 1 in 2017 HKDSE math paper 2";
+      document.getElementById("noted").innerHTML = "Please input a 4 digit number.<br>\ne.g. 1701 indicates MC question 1 in 2017 HKDSE Maths paper 2";
       document.getElementById("noted").style.color = "black";
     }else{
       if(qnum >= "01" && qnum <= "45"){
         document.getElementById("noted").innerHTML = globalPersons.data[yr+qnum].answer;
-        document.getElementById("noted").innerHTML += " ("+ window['percentage20'+yr][(qnum-1)] + "%)";
+        //document.getElementById("noted").innerHTML += " ("+ window['percentage20'+yr][(qnum-1)] + "%)";
         document.getElementById("noted").style.color = "red";
 
       }
