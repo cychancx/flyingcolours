@@ -1,12 +1,14 @@
+
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript">
-  var baseurl = "http://0.0.0.0:5000/maths?year=1999";
+  var baseurl = "http://0.0.0.0:5000/maths?subject=1";
   function loadAPI(){
     var xmlhttp = new XMLHttpRequest();
     window.globalPersons = null;
+    window.yearList = [];
     xmlhttp.open("GET", baseurl, true);
     xmlhttp.onreadystatechange = function(){
       if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -22,31 +24,35 @@
           return result;
         }
 
-        function jsonKeyRand(persons){
-          for (var key in Object.keys(persons.data)){
-            var tempkey = makeid(40);
+        function jsonKeyRand(personsf){
+          for (var key in Object.keys(personsf.data)){
+            var tempkey = makeid(20);
 
-            persons.data[tempkey] = persons.data[key];
-            delete persons.data[key];
+            personsf.data[tempkey] = personsf.data[key];
+            delete personsf.data[key];
           }
-          return persons;
+          return personsf;
         }
 
-        function jsonKeyRename(jsonobject){
-          var testlist = Object.keys(jsonobject.data);
-          for (i = 0; i< testlist.length; i++){
-            console.log(testlist[i]);
+        function jsonKeyRename(personsf){
+          var count = [];
+          var testlist = Object.keys(personsf.data);
+          for (var key of Object.keys(personsf.data)){
+            var newname = personsf.data[key]["year"].slice(-2) + ("0"+personsf.data[key]["question"]).slice(-2);
+            yearList.push(personsf.data[key]["year"]);
 
-            var newname = jsonobject.data[testlist[i]]["year"].slice(-2) + ("0"+jsonobject.data[testlist[i]]["question"]).slice(-2);
-
-            jsonobject.data[newname] = jsonobject.data[testlist[i]];
-            delete jsonobject.data[testlist[i]];
+            personsf.data[newname] = personsf.data[key];
+            delete personsf.data[key];
           }
-          return jsonobject;
+          //console.log(count)
+          return personsf;
         }
 
         globalPersons = jsonKeyRename(jsonKeyRand(persons));
-        console.log(globalPersons);
+        yearList = [...new Set(yearList)];
+
+        //console.log(yearList);
+        //console.log(globalPersons.data);
       }
     }
     xmlhttp.send();
@@ -106,7 +112,8 @@ body {font-size:16px;}
       <button class="btn btn-primary" id="button">Convert</button>
       <pre id="jsondata"></pre>
       <div class="checkDiv" onclick = "make_black()">
-        <h2><input type="text" id="mcYear" name="mcYear" size="3" maxlength="4"> MC Answer box</h2>
+      	<br>
+        <h2>Year: <input type="text" id="mcYear" name="mcYear" size="3" maxlength="4"></h2>
           <table>
             <tr>
               <th>1</th>
@@ -234,7 +241,32 @@ body {font-size:16px;}
               <td><input type="text" id="mcans44" name="mcans44" size="3" maxlength="1"></td>
               <td><input type="text" id="mcans45" name="mcans45" size="3" maxlength="1"></td>
             </tr>
+            <tr>
+              <th>46</th>
+              <th>47</th>
+              <th>48</th>
+              <th>49</th>
+              <th>50</th>
+            </tr>
+            <tr>
+              <td><input type="text" id="mcans46" name="mcans1" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans47" name="mcans2" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans48" name="mcans3" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans49" name="mcans4" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans50" name="mcans5" size="3" maxlength="1"></td>
+            </tr>
+            <tr>
+              <th>51</th>
+              <th>52</th>
+              <th>53</th>
+            </tr>
+            <tr>
+              <td><input type="text" id="mcans51" name="mcans1" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans52" name="mcans2" size="3" maxlength="1"></td>
+              <td><input type="text" id="mcans53" name="mcans3" size="3" maxlength="1"></td>
+            </tr>
           </table>
+          <br>
         <button type="button" onclick="ansChecking()">Check</button>
         <p id="result"></p>
       </div>
@@ -307,9 +339,10 @@ function ansChecking() {
   var correct = 0;
   var yr = document.getElementById("mcYear").value;
   var qnum = null;
-  if((yr <= 2020 && yr >= 1977) || yr.toUpperCase() == "SP" || yr.toUpperCase() == "PP"){
+  if((yearList.includes(yr)) || yr.toUpperCase() == "SP" || yr.toUpperCase() == "PP"){
+  	console.log(typeof yr);
     yr = yr.slice(-2);
-    for(var i = 1;i <= 45;i++){
+    for(var i = 1;i <= 53;i++){
       if(i < 10)
         qnum = "0"+i.toString();
        else {
@@ -317,6 +350,7 @@ function ansChecking() {
        }
       if(document.getElementById("mcans" + i.toString()).value.toUpperCase() == globalPersons.data[yr.toUpperCase()+qnum].answer){
         correct++;
+        console.log(correct);
         document.getElementById("mcans" + i.toString()).style.color = "lime";
       }else {
         document.getElementById("mcans" + i.toString()).style.color = "red";
@@ -337,9 +371,9 @@ function ansSearching(){
       document.getElementById("noted").innerHTML = "Please input a 4 digit number.<br>\ne.g. 1701 indicates MC question 1 in 2017 HKDSE Maths paper 2";
       document.getElementById("noted").style.color = "black";
     }else{
-      if(qnum >= "01" && qnum <= "45"){
-        document.getElementById("noted").innerHTML = globalPersons.data[yr+qnum].answer;
-        //document.getElementById("noted").innerHTML += " ("+ window['percentage20'+yr][(qnum-1)] + "%)";
+      if(qnum >= "01" && qnum <= "53"){
+        document.getElementById("noted").innerHTML = "Answer: " + globalPersons.data[yr+qnum].answer;
+        document.getElementById("noted").innerHTML += "<br>" + globalPersons.data[yr+qnum].year + " DSE MC Question " + globalPersons.data[yr+qnum].question;
         document.getElementById("noted").style.color = "red";
 
       }
