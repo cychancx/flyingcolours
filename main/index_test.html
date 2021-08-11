@@ -269,6 +269,7 @@ body {font-size:16px;}
           </table>
           <br>
         <button type="button" onclick="ansChecking()">Check</button>
+        <button type="button" onclick="ansClear()">Clear</button>
         <p id="result"></p>
       </div>
     </div>
@@ -518,6 +519,14 @@ $(window).on("load",function() {
     });
   }).scroll(); //invoke scroll-handler on page-load
 });
+
+
+function ansClear() {
+    for(var i = 1;i <= 53;i++){
+        document.getElementById("mcans" + i.toString()).style.color = "black";
+        document.getElementById("mcans" + i.toString()).value = "";
+    }
+}
 </script>
 </body>
 </html>
